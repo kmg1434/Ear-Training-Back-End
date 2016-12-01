@@ -49,11 +49,11 @@ class GamesController < ApplicationController
 
   private
 
-  def set_game
-    @game = Game.find(params[:id])
-  end
+    def set_game
+      @game = Game.find(params[:id])
+    end
 
-  def game_params
-    params[:game]
-  end
+    def game_params
+      params.require(:game).permit(:user_id, :lvl, :score)
+    end
 end
