@@ -1,4 +1,4 @@
-class GamesController < ApplicationController
+class GamesController < OpenReadController
   before_action :set_game, only: [:show, :update, :destroy]
 
   # GET /games
@@ -18,10 +18,13 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new(game_params)
+    puts current_user
+    @game = current_user.games.build(game_params)
+
+    puts 'hey i made it into my create'
 
     if @game.save
-      render json: @game, status: :created, location: @game
+      render json: @game, status: :created
     else
       render json: @game.errors, status: :unprocessable_entity
     end
