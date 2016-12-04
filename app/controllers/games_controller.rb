@@ -4,7 +4,8 @@ class GamesController < OpenReadController
   # GET /games
   # GET /games.json
   def index
-    @games = Game.all
+    # @games = Game.all.order(score: :desc)
+    @games = Game.where(:user_id => current_user.id).order(score: :desc)
 
     render json: @games
   end
