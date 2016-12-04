@@ -18,10 +18,7 @@ class GamesController < OpenReadController
   # POST /games
   # POST /games.json
   def create
-    puts current_user
     @game = current_user.games.build(game_params)
-
-    puts 'hey i made it into my create'
 
     if @game.save
       render json: @game, status: :created
@@ -52,11 +49,11 @@ class GamesController < OpenReadController
 
   private
 
-    def set_game
-      @game = Game.find(params[:id])
-    end
+  def set_game
+    @game = Game.find(params[:id])
+  end
 
-    def game_params
-      params.require(:game).permit(:user_id, :lvl, :score)
-    end
+  def game_params
+    params.require(:game).permit(:user_id, :lvl, :score)
+  end
 end
