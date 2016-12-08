@@ -4,5 +4,6 @@ class Game < ActiveRecord::Base
     super
     self.score = 0
   end
-  #validates :lvl, presence: true
+  validates :lvl, numericality: true
+  validates :score, numericality: true
 end
