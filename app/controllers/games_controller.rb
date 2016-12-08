@@ -31,7 +31,7 @@ class GamesController < OpenReadController
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
   def update
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
 
     if @game.update(game_params)
       head :no_content
@@ -51,7 +51,7 @@ class GamesController < OpenReadController
   private
 
   def set_game
-    @game = Game.find(params[:id])
+    @game = current_user.games.find(params[:id])
   end
 
   def game_params
